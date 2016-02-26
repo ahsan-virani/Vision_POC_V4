@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="68bd525b6e48474faf4c0fa314ccd449" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="VISION_BASELINEModel.SEC_GROUP" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VISION_BASELINEModel.SEC_GROUP_PERMISSION" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VISION_BASELINEModel.SEC_PERMISSION" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VISION_BASELINEModel.SEC_USER" Width="1.5" PointX="3.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VISION_BASELINEModel.SEC_USER_GROUP" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="VISION_BASELINEModel.REFSEC_GROUP12" ManuallyRouted="false" />
+        <AssociationConnector Association="VISION_BASELINEModel.REFSEC_GROUP24" ManuallyRouted="false" />
+        <AssociationConnector Association="VISION_BASELINEModel.REFSEC_USER13" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

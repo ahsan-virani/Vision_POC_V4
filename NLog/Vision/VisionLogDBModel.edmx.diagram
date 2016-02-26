@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="25b11297ca0e48f0a886bd9364d27f56" Name="Diagram1">
+        <EntityTypeShape EntityType="VISIONModel.ACTION_TYPE" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VISIONModel.GLOBAL_AUDIT" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="VISIONModel.LOG_TYPE" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VISIONModel.GLOBAL_AUDIT_DATA" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="VISIONModel.FK__GLOBAL_AU__ACTIO__41B98BF2" ManuallyRouted="false" />
+        <AssociationConnector Association="VISIONModel.FK__GLOBAL_AU__GLOBA__214CBC60" ManuallyRouted="false" />
+        <AssociationConnector Association="VISIONModel.FK__GLOBAL_AU__LOG_T__43A1D464" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

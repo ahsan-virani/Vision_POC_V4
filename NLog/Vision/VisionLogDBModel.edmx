@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VISIONModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACTION_TYPE">
+          <Key>
+            <PropertyRef Name="ACTION_TYPE_ID" />
+          </Key>
+          <Property Name="ACTION_TYPE_ID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ACTION_TYPE_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="GLOBAL_AUDIT">
+          <Key>
+            <PropertyRef Name="GLOBAL_AUDIT_ID" />
+          </Key>
+          <Property Name="ENTITY" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="ACTION" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PRIMARY_KEY_VALS" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="CHANGED_COLS_VAL" Type="varchar" MaxLength="4000" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="WINDOWS_CREATED_BY" Type="varchar" MaxLength="30" />
+          <Property Name="WINDOWS_UPDATED_BY" Type="varchar" MaxLength="30" />
+          <Property Name="MACHINE_NAME" Type="varchar" MaxLength="30" />
+          <Property Name="GLOBAL_AUDIT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOG_TYPE_ID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RESULT" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="EVENT_ORIGIN" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="1024" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'VISION.dbo.GLOBAL_AUDIT_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GLOBAL_AUDIT_DATA">
+          <Key>
+            <PropertyRef Name="ENTITY" />
+            <PropertyRef Name="ACTION" />
+            <PropertyRef Name="CREATED_ON" />
+            <PropertyRef Name="CREATED_BY" />
+            <PropertyRef Name="UPDATED_ON" />
+            <PropertyRef Name="UPDATED_BY" />
+            <PropertyRef Name="GLOBAL_AUDIT_ID" />
+          </Key>
+          <Property Name="ENTITY" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="ACTION" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="COLUMN_CHANGED" Type="varchar" MaxLength="150" />
+          <Property Name="OLD_VALUE" Type="varchar" MaxLength="1024" />
+          <Property Name="NEW_VALUE" Type="varchar" MaxLength="1024" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="WINDOWS_CREATED_BY" Type="varchar" MaxLength="30" />
+          <Property Name="WINDOWS_UPDATED_BY" Type="varchar" MaxLength="30" />
+          <Property Name="MACHINE_NAME" Type="varchar" MaxLength="30" />
+          <Property Name="GLOBAL_AUDIT_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOG_TYPE">
+          <Key>
+            <PropertyRef Name="LOG_TYPE_ID" />
+          </Key>
+          <Property Name="LOG_TYPE_ID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LOG_TYPE_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__GLOBAL_AU__ACTIO__41B98BF2">
+          <End Role="ACTION_TYPE" Type="Self.ACTION_TYPE" Multiplicity="1" />
+          <End Role="GLOBAL_AUDIT" Type="Self.GLOBAL_AUDIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACTION_TYPE">
+              <PropertyRef Name="ACTION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="GLOBAL_AUDIT">
+              <PropertyRef Name="ACTION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GLOBAL_AU__GLOBA__214CBC60">
+          <End Role="GLOBAL_AUDIT" Type="Self.GLOBAL_AUDIT" Multiplicity="1" />
+          <End Role="GLOBAL_AUDIT_DATA" Type="Self.GLOBAL_AUDIT_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GLOBAL_AUDIT">
+              <PropertyRef Name="GLOBAL_AUDIT_ID" />
+            </Principal>
+            <Dependent Role="GLOBAL_AUDIT_DATA">
+              <PropertyRef Name="GLOBAL_AUDIT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GLOBAL_AU__LOG_T__43A1D464">
+          <End Role="LOG_TYPE" Type="Self.LOG_TYPE" Multiplicity="1" />
+          <End Role="GLOBAL_AUDIT" Type="Self.GLOBAL_AUDIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOG_TYPE">
+              <PropertyRef Name="LOG_TYPE_ID" />
+            </Principal>
+            <Dependent Role="GLOBAL_AUDIT">
+              <PropertyRef Name="LOG_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VISIONModelStoreContainer">
+          <EntitySet Name="ACTION_TYPE" EntityType="Self.ACTION_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GLOBAL_AUDIT" EntityType="Self.GLOBAL_AUDIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOG_TYPE" EntityType="Self.LOG_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GLOBAL_AUDIT_DATA" EntityType="Self.GLOBAL_AUDIT_DATA" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GLOBAL_AUDIT_DATA].[ENTITY] AS [ENTITY], 
+    [GLOBAL_AUDIT_DATA].[ACTION] AS [ACTION], 
+    [GLOBAL_AUDIT_DATA].[COLUMN_CHANGED] AS [COLUMN_CHANGED], 
+    [GLOBAL_AUDIT_DATA].[OLD_VALUE] AS [OLD_VALUE], 
+    [GLOBAL_AUDIT_DATA].[NEW_VALUE] AS [NEW_VALUE], 
+    [GLOBAL_AUDIT_DATA].[CREATED_ON] AS [CREATED_ON], 
+    [GLOBAL_AUDIT_DATA].[CREATED_BY] AS [CREATED_BY], 
+    [GLOBAL_AUDIT_DATA].[UPDATED_ON] AS [UPDATED_ON], 
+    [GLOBAL_AUDIT_DATA].[UPDATED_BY] AS [UPDATED_BY], 
+    [GLOBAL_AUDIT_DATA].[WINDOWS_CREATED_BY] AS [WINDOWS_CREATED_BY], 
+    [GLOBAL_AUDIT_DATA].[WINDOWS_UPDATED_BY] AS [WINDOWS_UPDATED_BY], 
+    [GLOBAL_AUDIT_DATA].[MACHINE_NAME] AS [MACHINE_NAME], 
+    [GLOBAL_AUDIT_DATA].[GLOBAL_AUDIT_ID] AS [GLOBAL_AUDIT_ID]
+    FROM [dbo].[GLOBAL_AUDIT_DATA] AS [GLOBAL_AUDIT_DATA]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__GLOBAL_AU__ACTIO__41B98BF2" Association="Self.FK__GLOBAL_AU__ACTIO__41B98BF2">
+            <End Role="ACTION_TYPE" EntitySet="ACTION_TYPE" />
+            <End Role="GLOBAL_AUDIT" EntitySet="GLOBAL_AUDIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GLOBAL_AU__GLOBA__214CBC60" Association="Self.FK__GLOBAL_AU__GLOBA__214CBC60">
+            <End Role="GLOBAL_AUDIT" EntitySet="GLOBAL_AUDIT" />
+            <End Role="GLOBAL_AUDIT_DATA" EntitySet="GLOBAL_AUDIT_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GLOBAL_AU__LOG_T__43A1D464" Association="Self.FK__GLOBAL_AU__LOG_T__43A1D464">
+            <End Role="LOG_TYPE" EntitySet="LOG_TYPE" />
+            <End Role="GLOBAL_AUDIT" EntitySet="GLOBAL_AUDIT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VISIONModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACTION_TYPE">
+          <Key>
+            <PropertyRef Name="ACTION_TYPE_ID" />
+          </Key>
+          <Property Name="ACTION_TYPE_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION_TYPE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GLOBAL_AUDIT" Relationship="Self.FK__GLOBAL_AU__ACTIO__41B98BF2" FromRole="ACTION_TYPE" ToRole="GLOBAL_AUDIT" />
+        </EntityType>
+        <EntityType Name="GLOBAL_AUDIT">
+          <Key>
+            <PropertyRef Name="GLOBAL_AUDIT_ID" />
+          </Key>
+          <Property Name="ENTITY" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRIMARY_KEY_VALS" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CHANGED_COLS_VAL" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WINDOWS_CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WINDOWS_UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MACHINE_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="GLOBAL_AUDIT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOG_TYPE_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RESULT" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="EVENT_ORIGIN" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ACTION_TYPE" Relationship="Self.FK__GLOBAL_AU__ACTIO__41B98BF2" FromRole="GLOBAL_AUDIT" ToRole="ACTION_TYPE" />
+          <NavigationProperty Name="GLOBAL_AUDIT_DATA" Relationship="Self.FK__GLOBAL_AU__GLOBA__214CBC60" FromRole="GLOBAL_AUDIT" ToRole="GLOBAL_AUDIT_DATA" />
+          <NavigationProperty Name="LOG_TYPE" Relationship="Self.FK__GLOBAL_AU__LOG_T__43A1D464" FromRole="GLOBAL_AUDIT" ToRole="LOG_TYPE" />
+        </EntityType>
+        <EntityType Name="LOG_TYPE">
+          <Key>
+            <PropertyRef Name="LOG_TYPE_ID" />
+          </Key>
+          <Property Name="LOG_TYPE_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOG_TYPE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GLOBAL_AUDIT" Relationship="Self.FK__GLOBAL_AU__LOG_T__43A1D464" FromRole="LOG_TYPE" ToRole="GLOBAL_AUDIT" />
+        </EntityType>
+        <EntityType Name="GLOBAL_AUDIT_DATA">
+          <Key>
+            <PropertyRef Name="ENTITY" />
+            <PropertyRef Name="ACTION" />
+            <PropertyRef Name="CREATED_ON" />
+            <PropertyRef Name="CREATED_BY" />
+            <PropertyRef Name="UPDATED_ON" />
+            <PropertyRef Name="UPDATED_BY" />
+            <PropertyRef Name="GLOBAL_AUDIT_ID" />
+          </Key>
+          <Property Name="ENTITY" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COLUMN_CHANGED" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="OLD_VALUE" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="NEW_VALUE" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WINDOWS_CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WINDOWS_UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MACHINE_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="GLOBAL_AUDIT_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GLOBAL_AUDIT" Relationship="Self.FK__GLOBAL_AU__GLOBA__214CBC60" FromRole="GLOBAL_AUDIT_DATA" ToRole="GLOBAL_AUDIT" />
+        </EntityType>
+        <Association Name="FK__GLOBAL_AU__ACTIO__41B98BF2">
+          <End Role="ACTION_TYPE" Type="Self.ACTION_TYPE" Multiplicity="1" />
+          <End Role="GLOBAL_AUDIT" Type="Self.GLOBAL_AUDIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACTION_TYPE">
+              <PropertyRef Name="ACTION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="GLOBAL_AUDIT">
+              <PropertyRef Name="ACTION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GLOBAL_AU__GLOBA__214CBC60">
+          <End Role="GLOBAL_AUDIT" Type="Self.GLOBAL_AUDIT" Multiplicity="1" />
+          <End Role="GLOBAL_AUDIT_DATA" Type="Self.GLOBAL_AUDIT_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GLOBAL_AUDIT">
+              <PropertyRef Name="GLOBAL_AUDIT_ID" />
+            </Principal>
+            <Dependent Role="GLOBAL_AUDIT_DATA">
+              <PropertyRef Name="GLOBAL_AUDIT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GLOBAL_AU__LOG_T__43A1D464">
+          <End Role="LOG_TYPE" Type="Self.LOG_TYPE" Multiplicity="1" />
+          <End Role="GLOBAL_AUDIT" Type="Self.GLOBAL_AUDIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOG_TYPE">
+              <PropertyRef Name="LOG_TYPE_ID" />
+            </Principal>
+            <Dependent Role="GLOBAL_AUDIT">
+              <PropertyRef Name="LOG_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VisionLogDBModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACTION_TYPE" EntityType="Self.ACTION_TYPE" />
+          <EntitySet Name="GLOBAL_AUDIT" EntityType="Self.GLOBAL_AUDIT" />
+          <EntitySet Name="LOG_TYPE" EntityType="Self.LOG_TYPE" />
+          <EntitySet Name="GLOBAL_AUDIT_DATA" EntityType="Self.GLOBAL_AUDIT_DATA" />
+          <AssociationSet Name="FK__GLOBAL_AU__ACTIO__41B98BF2" Association="Self.FK__GLOBAL_AU__ACTIO__41B98BF2">
+            <End Role="ACTION_TYPE" EntitySet="ACTION_TYPE" />
+            <End Role="GLOBAL_AUDIT" EntitySet="GLOBAL_AUDIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GLOBAL_AU__GLOBA__214CBC60" Association="Self.FK__GLOBAL_AU__GLOBA__214CBC60">
+            <End Role="GLOBAL_AUDIT" EntitySet="GLOBAL_AUDIT" />
+            <End Role="GLOBAL_AUDIT_DATA" EntitySet="GLOBAL_AUDIT_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GLOBAL_AU__LOG_T__43A1D464" Association="Self.FK__GLOBAL_AU__LOG_T__43A1D464">
+            <End Role="LOG_TYPE" EntitySet="LOG_TYPE" />
+            <End Role="GLOBAL_AUDIT" EntitySet="GLOBAL_AUDIT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VISIONModelStoreContainer" CdmEntityContainer="VisionLogDBModel">
+          <EntitySetMapping Name="ACTION_TYPE">
+            <EntityTypeMapping TypeName="VISIONModel.ACTION_TYPE">
+              <MappingFragment StoreEntitySet="ACTION_TYPE">
+                <ScalarProperty Name="ACTION_TYPE_ID" ColumnName="ACTION_TYPE_ID" />
+                <ScalarProperty Name="ACTION_TYPE_NAME" ColumnName="ACTION_TYPE_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GLOBAL_AUDIT">
+            <EntityTypeMapping TypeName="VISIONModel.GLOBAL_AUDIT">
+              <MappingFragment StoreEntitySet="GLOBAL_AUDIT">
+                <ScalarProperty Name="ENTITY" ColumnName="ENTITY" />
+                <ScalarProperty Name="ACTION" ColumnName="ACTION" />
+                <ScalarProperty Name="PRIMARY_KEY_VALS" ColumnName="PRIMARY_KEY_VALS" />
+                <ScalarProperty Name="CHANGED_COLS_VAL" ColumnName="CHANGED_COLS_VAL" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="WINDOWS_CREATED_BY" ColumnName="WINDOWS_CREATED_BY" />
+                <ScalarProperty Name="WINDOWS_UPDATED_BY" ColumnName="WINDOWS_UPDATED_BY" />
+                <ScalarProperty Name="MACHINE_NAME" ColumnName="MACHINE_NAME" />
+                <ScalarProperty Name="GLOBAL_AUDIT_ID" ColumnName="GLOBAL_AUDIT_ID" />
+                <ScalarProperty Name="LOG_TYPE_ID" ColumnName="LOG_TYPE_ID" />
+                <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+                <ScalarProperty Name="EVENT_ORIGIN" ColumnName="EVENT_ORIGIN" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOG_TYPE">
+            <EntityTypeMapping TypeName="VISIONModel.LOG_TYPE">
+              <MappingFragment StoreEntitySet="LOG_TYPE">
+                <ScalarProperty Name="LOG_TYPE_ID" ColumnName="LOG_TYPE_ID" />
+                <ScalarProperty Name="LOG_TYPE_NAME" ColumnName="LOG_TYPE_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GLOBAL_AUDIT_DATA">
+            <EntityTypeMapping TypeName="VISIONModel.GLOBAL_AUDIT_DATA">
+              <MappingFragment StoreEntitySet="GLOBAL_AUDIT_DATA">
+                <ScalarProperty Name="ENTITY" ColumnName="ENTITY" />
+                <ScalarProperty Name="ACTION" ColumnName="ACTION" />
+                <ScalarProperty Name="COLUMN_CHANGED" ColumnName="COLUMN_CHANGED" />
+                <ScalarProperty Name="OLD_VALUE" ColumnName="OLD_VALUE" />
+                <ScalarProperty Name="NEW_VALUE" ColumnName="NEW_VALUE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="WINDOWS_CREATED_BY" ColumnName="WINDOWS_CREATED_BY" />
+                <ScalarProperty Name="WINDOWS_UPDATED_BY" ColumnName="WINDOWS_UPDATED_BY" />
+                <ScalarProperty Name="MACHINE_NAME" ColumnName="MACHINE_NAME" />
+                <ScalarProperty Name="GLOBAL_AUDIT_ID" ColumnName="GLOBAL_AUDIT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

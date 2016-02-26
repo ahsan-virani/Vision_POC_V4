@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VISION_BASELINEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SEC_GROUP">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+          </Key>
+          <Property Name="GROUP_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GROUP_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OTHER_LANG_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="IS_ACTIVE" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="WHEN_DELETED" Type="datetime" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SEC_GROUP_PERMISSION">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+            <PropertyRef Name="PERMISSION_ID" />
+            <PropertyRef Name="APP_ID" />
+          </Key>
+          <Property Name="GROUP_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PERMISSION_ID" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="APP_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CAN_CREATE" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="IS_AUDITING_ALLOWED" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CAN_UPDATE" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CAN_DELETE" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="WINDOWS_UPDATED_BY" Type="varchar" MaxLength="30" />
+          <Property Name="WINDOWS_CREATED_BY" Type="varchar" MaxLength="30" />
+          <Property Name="MACHINE_NAME" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="SEC_PERMISSION">
+          <Key>
+            <PropertyRef Name="PERMISSION_ID" />
+            <PropertyRef Name="APP_ID" />
+          </Key>
+          <Property Name="PERMISSION_ID" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="PER_PARENT_ID" Type="varchar" MaxLength="50" />
+          <Property Name="APP_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PERMISSION_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OTHER_LANG_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="PERMISSION_TYPE" Type="varchar" MaxLength="30" />
+          <Property Name="CAN_CREATE" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CAN_UPDATE" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CAN_DELETE" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="IS_AUDITING_ALLOWED" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SEC_USER">
+          <Key>
+            <PropertyRef Name="LOGIN_ID" />
+          </Key>
+          <Property Name="LOGIN_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="200" />
+          <Property Name="FULL_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OTHER_LANG_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="PREFERED_CULTURE" Type="varchar" MaxLength="30" />
+          <Property Name="IS_ACTIVE" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="WHEN_DELETED" Type="datetime" />
+          <Property Name="POLICY_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DEPT_ID" Type="numeric" Precision="6" Scale="0" />
+          <Property Name="OFFICE_ID" Type="varchar" MaxLength="50" />
+          <Property Name="ORG_ID" Type="varchar" MaxLength="50" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IS_LOGGED_IN" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="WINDOWS_LOGGEDIN_BY" Type="nvarchar" MaxLength="100" />
+          <Property Name="LAST_RESPONSE_AT" Type="datetime" />
+          <Property Name="IS_RESET_REQUIRED" Type="numeric" Precision="1" Scale="0" />
+          <Property Name="PWD_RETRY_COUNT" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="SUPPORT_LEVEL_ID" Type="int" />
+          <Property Name="EMAIL_ADDRESS" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SEC_USER_GROUP">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+            <PropertyRef Name="LOGIN_ID" />
+          </Key>
+          <Property Name="GROUP_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LOGIN_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="WINDOWS_UPDATED_BY" Type="varchar" MaxLength="30" />
+          <Property Name="WINDOWS_CREATED_BY" Type="varchar" MaxLength="30" />
+          <Property Name="MACHINE_NAME" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="REFSEC_GROUP12">
+          <End Role="SEC_GROUP" Type="Self.SEC_GROUP" Multiplicity="1" />
+          <End Role="SEC_USER_GROUP" Type="Self.SEC_USER_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEC_GROUP">
+              <PropertyRef Name="GROUP_ID" />
+            </Principal>
+            <Dependent Role="SEC_USER_GROUP">
+              <PropertyRef Name="GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REFSEC_GROUP24">
+          <End Role="SEC_GROUP" Type="Self.SEC_GROUP" Multiplicity="1" />
+          <End Role="SEC_GROUP_PERMISSION" Type="Self.SEC_GROUP_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEC_GROUP">
+              <PropertyRef Name="GROUP_ID" />
+            </Principal>
+            <Dependent Role="SEC_GROUP_PERMISSION">
+              <PropertyRef Name="GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REFSEC_USER13">
+          <End Role="SEC_USER" Type="Self.SEC_USER" Multiplicity="1" />
+          <End Role="SEC_USER_GROUP" Type="Self.SEC_USER_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEC_USER">
+              <PropertyRef Name="LOGIN_ID" />
+            </Principal>
+            <Dependent Role="SEC_USER_GROUP">
+              <PropertyRef Name="LOGIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VISION_BASELINEModelStoreContainer">
+          <EntitySet Name="SEC_GROUP" EntityType="Self.SEC_GROUP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEC_GROUP_PERMISSION" EntityType="Self.SEC_GROUP_PERMISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEC_PERMISSION" EntityType="Self.SEC_PERMISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEC_USER" EntityType="Self.SEC_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEC_USER_GROUP" EntityType="Self.SEC_USER_GROUP" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="REFSEC_GROUP12" Association="Self.REFSEC_GROUP12">
+            <End Role="SEC_GROUP" EntitySet="SEC_GROUP" />
+            <End Role="SEC_USER_GROUP" EntitySet="SEC_USER_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="REFSEC_GROUP24" Association="Self.REFSEC_GROUP24">
+            <End Role="SEC_GROUP" EntitySet="SEC_GROUP" />
+            <End Role="SEC_GROUP_PERMISSION" EntitySet="SEC_GROUP_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="REFSEC_USER13" Association="Self.REFSEC_USER13">
+            <End Role="SEC_USER" EntitySet="SEC_USER" />
+            <End Role="SEC_USER_GROUP" EntitySet="SEC_USER_GROUP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VISION_BASELINEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SEC_GROUP">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+          </Key>
+          <Property Name="GROUP_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GROUP_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OTHER_LANG_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACTIVE" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="WHEN_DELETED" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SEC_USER_GROUP" Relationship="Self.REFSEC_GROUP12" FromRole="SEC_GROUP" ToRole="SEC_USER_GROUP" />
+          <NavigationProperty Name="SEC_GROUP_PERMISSION" Relationship="Self.REFSEC_GROUP24" FromRole="SEC_GROUP" ToRole="SEC_GROUP_PERMISSION" />
+        </EntityType>
+        <EntityType Name="SEC_GROUP_PERMISSION">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+            <PropertyRef Name="PERMISSION_ID" />
+            <PropertyRef Name="APP_ID" />
+          </Key>
+          <Property Name="GROUP_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERMISSION_ID" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APP_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CAN_CREATE" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="IS_AUDITING_ALLOWED" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CAN_UPDATE" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CAN_DELETE" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WINDOWS_UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WINDOWS_CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MACHINE_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SEC_GROUP" Relationship="Self.REFSEC_GROUP24" FromRole="SEC_GROUP_PERMISSION" ToRole="SEC_GROUP" />
+        </EntityType>
+        <EntityType Name="SEC_PERMISSION">
+          <Key>
+            <PropertyRef Name="PERMISSION_ID" />
+            <PropertyRef Name="APP_ID" />
+          </Key>
+          <Property Name="PERMISSION_ID" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PER_PARENT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APP_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERMISSION_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OTHER_LANG_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PERMISSION_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CAN_CREATE" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CAN_UPDATE" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CAN_DELETE" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="IS_AUDITING_ALLOWED" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SEC_USER">
+          <Key>
+            <PropertyRef Name="LOGIN_ID" />
+          </Key>
+          <Property Name="LOGIN_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FULL_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OTHER_LANG_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PREFERED_CULTURE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACTIVE" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="WHEN_DELETED" Type="DateTime" Precision="3" />
+          <Property Name="POLICY_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEPT_ID" Type="Decimal" Precision="6" Scale="0" />
+          <Property Name="OFFICE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ORG_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IS_LOGGED_IN" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="WINDOWS_LOGGEDIN_BY" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LAST_RESPONSE_AT" Type="DateTime" Precision="3" />
+          <Property Name="IS_RESET_REQUIRED" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="PWD_RETRY_COUNT" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="SUPPORT_LEVEL_ID" Type="Int32" />
+          <Property Name="EMAIL_ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SEC_USER_GROUP" Relationship="Self.REFSEC_USER13" FromRole="SEC_USER" ToRole="SEC_USER_GROUP" />
+        </EntityType>
+        <EntityType Name="SEC_USER_GROUP">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+            <PropertyRef Name="LOGIN_ID" />
+          </Key>
+          <Property Name="GROUP_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOGIN_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WINDOWS_UPDATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WINDOWS_CREATED_BY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MACHINE_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SEC_GROUP" Relationship="Self.REFSEC_GROUP12" FromRole="SEC_USER_GROUP" ToRole="SEC_GROUP" />
+          <NavigationProperty Name="SEC_USER" Relationship="Self.REFSEC_USER13" FromRole="SEC_USER_GROUP" ToRole="SEC_USER" />
+        </EntityType>
+        <Association Name="REFSEC_GROUP12">
+          <End Role="SEC_GROUP" Type="Self.SEC_GROUP" Multiplicity="1" />
+          <End Role="SEC_USER_GROUP" Type="Self.SEC_USER_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEC_GROUP">
+              <PropertyRef Name="GROUP_ID" />
+            </Principal>
+            <Dependent Role="SEC_USER_GROUP">
+              <PropertyRef Name="GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REFSEC_GROUP24">
+          <End Role="SEC_GROUP" Type="Self.SEC_GROUP" Multiplicity="1" />
+          <End Role="SEC_GROUP_PERMISSION" Type="Self.SEC_GROUP_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEC_GROUP">
+              <PropertyRef Name="GROUP_ID" />
+            </Principal>
+            <Dependent Role="SEC_GROUP_PERMISSION">
+              <PropertyRef Name="GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REFSEC_USER13">
+          <End Role="SEC_USER" Type="Self.SEC_USER" Multiplicity="1" />
+          <End Role="SEC_USER_GROUP" Type="Self.SEC_USER_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEC_USER">
+              <PropertyRef Name="LOGIN_ID" />
+            </Principal>
+            <Dependent Role="SEC_USER_GROUP">
+              <PropertyRef Name="LOGIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VisionDBModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SEC_GROUP" EntityType="Self.SEC_GROUP" />
+          <EntitySet Name="SEC_GROUP_PERMISSION" EntityType="Self.SEC_GROUP_PERMISSION" />
+          <EntitySet Name="SEC_PERMISSION" EntityType="Self.SEC_PERMISSION" />
+          <EntitySet Name="SEC_USER" EntityType="Self.SEC_USER" />
+          <EntitySet Name="SEC_USER_GROUP" EntityType="Self.SEC_USER_GROUP" />
+          <AssociationSet Name="REFSEC_GROUP12" Association="Self.REFSEC_GROUP12">
+            <End Role="SEC_GROUP" EntitySet="SEC_GROUP" />
+            <End Role="SEC_USER_GROUP" EntitySet="SEC_USER_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="REFSEC_GROUP24" Association="Self.REFSEC_GROUP24">
+            <End Role="SEC_GROUP" EntitySet="SEC_GROUP" />
+            <End Role="SEC_GROUP_PERMISSION" EntitySet="SEC_GROUP_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="REFSEC_USER13" Association="Self.REFSEC_USER13">
+            <End Role="SEC_USER" EntitySet="SEC_USER" />
+            <End Role="SEC_USER_GROUP" EntitySet="SEC_USER_GROUP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VISION_BASELINEModelStoreContainer" CdmEntityContainer="VisionDBModel">
+          <EntitySetMapping Name="SEC_GROUP">
+            <EntityTypeMapping TypeName="VISION_BASELINEModel.SEC_GROUP">
+              <MappingFragment StoreEntitySet="SEC_GROUP">
+                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+                <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP_NAME" />
+                <ScalarProperty Name="OTHER_LANG_NAME" ColumnName="OTHER_LANG_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="WHEN_DELETED" ColumnName="WHEN_DELETED" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEC_GROUP_PERMISSION">
+            <EntityTypeMapping TypeName="VISION_BASELINEModel.SEC_GROUP_PERMISSION">
+              <MappingFragment StoreEntitySet="SEC_GROUP_PERMISSION">
+                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+                <ScalarProperty Name="PERMISSION_ID" ColumnName="PERMISSION_ID" />
+                <ScalarProperty Name="APP_ID" ColumnName="APP_ID" />
+                <ScalarProperty Name="CAN_CREATE" ColumnName="CAN_CREATE" />
+                <ScalarProperty Name="IS_AUDITING_ALLOWED" ColumnName="IS_AUDITING_ALLOWED" />
+                <ScalarProperty Name="CAN_UPDATE" ColumnName="CAN_UPDATE" />
+                <ScalarProperty Name="CAN_DELETE" ColumnName="CAN_DELETE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="WINDOWS_UPDATED_BY" ColumnName="WINDOWS_UPDATED_BY" />
+                <ScalarProperty Name="WINDOWS_CREATED_BY" ColumnName="WINDOWS_CREATED_BY" />
+                <ScalarProperty Name="MACHINE_NAME" ColumnName="MACHINE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEC_PERMISSION">
+            <EntityTypeMapping TypeName="VISION_BASELINEModel.SEC_PERMISSION">
+              <MappingFragment StoreEntitySet="SEC_PERMISSION">
+                <ScalarProperty Name="PERMISSION_ID" ColumnName="PERMISSION_ID" />
+                <ScalarProperty Name="PER_PARENT_ID" ColumnName="PER_PARENT_ID" />
+                <ScalarProperty Name="APP_ID" ColumnName="APP_ID" />
+                <ScalarProperty Name="PERMISSION_NAME" ColumnName="PERMISSION_NAME" />
+                <ScalarProperty Name="OTHER_LANG_NAME" ColumnName="OTHER_LANG_NAME" />
+                <ScalarProperty Name="PERMISSION_TYPE" ColumnName="PERMISSION_TYPE" />
+                <ScalarProperty Name="CAN_CREATE" ColumnName="CAN_CREATE" />
+                <ScalarProperty Name="CAN_UPDATE" ColumnName="CAN_UPDATE" />
+                <ScalarProperty Name="CAN_DELETE" ColumnName="CAN_DELETE" />
+                <ScalarProperty Name="IS_AUDITING_ALLOWED" ColumnName="IS_AUDITING_ALLOWED" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEC_USER">
+            <EntityTypeMapping TypeName="VISION_BASELINEModel.SEC_USER">
+              <MappingFragment StoreEntitySet="SEC_USER">
+                <ScalarProperty Name="LOGIN_ID" ColumnName="LOGIN_ID" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="OTHER_LANG_NAME" ColumnName="OTHER_LANG_NAME" />
+                <ScalarProperty Name="PREFERED_CULTURE" ColumnName="PREFERED_CULTURE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="WHEN_DELETED" ColumnName="WHEN_DELETED" />
+                <ScalarProperty Name="POLICY_ID" ColumnName="POLICY_ID" />
+                <ScalarProperty Name="DEPT_ID" ColumnName="DEPT_ID" />
+                <ScalarProperty Name="OFFICE_ID" ColumnName="OFFICE_ID" />
+                <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="IS_LOGGED_IN" ColumnName="IS_LOGGED_IN" />
+                <ScalarProperty Name="WINDOWS_LOGGEDIN_BY" ColumnName="WINDOWS_LOGGEDIN_BY" />
+                <ScalarProperty Name="LAST_RESPONSE_AT" ColumnName="LAST_RESPONSE_AT" />
+                <ScalarProperty Name="IS_RESET_REQUIRED" ColumnName="IS_RESET_REQUIRED" />
+                <ScalarProperty Name="PWD_RETRY_COUNT" ColumnName="PWD_RETRY_COUNT" />
+                <ScalarProperty Name="SUPPORT_LEVEL_ID" ColumnName="SUPPORT_LEVEL_ID" />
+                <ScalarProperty Name="EMAIL_ADDRESS" ColumnName="EMAIL_ADDRESS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEC_USER_GROUP">
+            <EntityTypeMapping TypeName="VISION_BASELINEModel.SEC_USER_GROUP">
+              <MappingFragment StoreEntitySet="SEC_USER_GROUP">
+                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+                <ScalarProperty Name="LOGIN_ID" ColumnName="LOGIN_ID" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="WINDOWS_UPDATED_BY" ColumnName="WINDOWS_UPDATED_BY" />
+                <ScalarProperty Name="WINDOWS_CREATED_BY" ColumnName="WINDOWS_CREATED_BY" />
+                <ScalarProperty Name="MACHINE_NAME" ColumnName="MACHINE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

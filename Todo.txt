@@ -1,0 +1,2 @@
+// rest api session token include in getEVentInfo as a parameter
+
